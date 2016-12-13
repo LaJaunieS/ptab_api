@@ -12,9 +12,20 @@
     
 <body data-ng-app="ptabApp">
     <div id="container" data-ng-controller="ptabCtrl">
-    
+        <label id="main-label">Enter a patent number</label>
+        <input tabindex="0" type="text" data-ng-model="query.patentNumber" autocomplete="off" placeholder="patent number"/>
+        
+        <button tabindex="0" type="button" id="submit" data-ng-click="getPatentData()">Submit</button>
             
-            
+        
+        <ul ng-repeat="result in patentNumberJson.data.results">
+        <li>{{result.trialNumber}}</li>
+        <li>{{result.patentOwnerName}}</li>
+        <li>{{result.petitionerPartyName}}</li>
+        <li>{{result.prosecutionStatus}}</li>
+        
+        </ul>
+        
         
     </div>
     

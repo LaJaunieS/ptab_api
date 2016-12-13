@@ -15,9 +15,7 @@ angular.module("ptabApp",[])
             
             
             //make api call based on query string parameters
-            $scope.query.patentNumber = "6314409";
-            $scope.query.caseNumber = "IPR2014-00500"
-            console.log($scope.query.patentNumber);
+            
             //default string for case search=  https://ptabdata.uspto.gov/ptab-api/trials/ + {trialNo} + /documents? + title={doc title}
             
             //default string for patent search = https://ptabdata.uspto.gov/ptab-api/trials?patentNumber= + {patentNo}
@@ -63,31 +61,10 @@ angular.module("ptabApp",[])
                 };
                 
                 
-                $http(caseSearchCall).then(
-                    function successCallback(data) {
-                        $scope.caseNumberJson = data;
-                        queryErrorExists =  $scope.caseNumberJson.data.results.length == 0;                      
-                        if (queryErrorExists) {
-                        $scope.query.queryErrorMessage = "That patent number doesn't exist or there was an error retrieving your query. Please enter another number or try your request again";
-                        console.log($scope.query.queryErrorMessage);
-                        //add error template to DOM
-                    } else {
-                        console.log($scope.caseNumberJson);
-                        //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
-                    };
-                    
-                    }, function errorCallback() {
-                    alert('Failed to connect to the API. Please check your connection and try again.');
-                });
-                        
-                
-                
-                
-                
-//                $http(patentSearchCall).then(
+//                $http(caseSearchCall).then(
 //                    function successCallback(data) {
-//                    $scope.patentNumberJson = data;
-//                    queryErrorExists =  $scope.patentNumberJson.data.results.length == 0;                      
+//                        $scope.caseNumberJson = data;
+//                        queryErrorExists =  $scope.patentNumberJson.data.results.length == 0;                      
 //                        if (queryErrorExists) {
 //                        $scope.query.queryErrorMessage = "That patent number doesn't exist or there was an error retrieving your query. Please enter another number or try your request again";
 //                        console.log($scope.query.queryErrorMessage);
@@ -96,18 +73,40 @@ angular.module("ptabApp",[])
 //                        console.log($scope.patentNumberJson);
 //                        //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
 //                    };
-//                        
-//                    },
-//                    function errorCallback() {
-//                            alert('Failed to connect to the API. Please check your connection and try again.');
-//                            });
+//                    
+//                    }, function errorCallback() {
+//                    alert('Failed to connect to the API. Please check your connection and try again.');
+//                });
+                        
+                
+                
+                
+                
+                $http(patentSearchCall).then(
+                    function successCallback(data) {
+                    $scope.patentNumberJson = data;
+                    queryErrorExists =  $scope.patentNumberJson.data.results.length == 0;                      
+                        if (queryErrorExists) {
+                        $scope.query.queryErrorMessage = "That patent number doesn't exist or there was an error retrieving your query. Please enter another number or try your request again";
+                        console.log($scope.query.queryErrorMessage);
+                        //add error template to DOM
+                    } else {
+                        console.log($scope.patentNumberJson);
+                        //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
+                    };
+                        
+                    },
+                    function errorCallback() {
+                            alert('Failed to connect to the API. Please check your connection and try again.');
+                            });
                 };
             
              
         //aggregate functions necessary to build url string, make api call, and load templates
             $scope.getPatentData = function() {
+                console.log($scope.query.patentNumber)
                 $scope.apiCall();   
-                }();
+                };
         }]) //close controller
         
         
