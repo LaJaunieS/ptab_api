@@ -15,14 +15,15 @@
         <label id="main-label">Enter a patent number</label>
         <input tabindex="0" type="text" data-ng-model="query.patentNumber" autocomplete="off" placeholder="patent number"/>
         
-        <button tabindex="0" type="button" id="submit" data-ng-click="getPatentData()">Submit</button>
+        <button tabindex="0" type="button" id="submit" data-ng-click="getPatentData(patentSearchCall, patentSearch, query.patentNumber)">Submit</button>
             
-        
+        <h5>{{query.queryErrorMessage}}</h5>
         <ul ng-repeat="result in patentNumberJson.data.results">
-        <li>{{result.trialNumber}}</li>
-        <li>{{result.patentOwnerName}}</li>
-        <li>{{result.petitionerPartyName}}</li>
-        <li>{{result.prosecutionStatus}}</li>
+        <li>Trial Number: {{result.trialNumber}}</li>
+        <li>Patent Owner: {{result.patentOwnerName}}</li>
+        <li>Petitioner: {{result.petitionerPartyName}}</li>
+        <li>Status: {{result.prosecutionStatus}}</li>
+        <li><a ng-click="getDocuments(result.links[1])" href="{{result.links[1].href}}">Get documents</a></li>
         
         </ul>
         
