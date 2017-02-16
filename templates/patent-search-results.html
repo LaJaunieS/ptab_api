@@ -7,15 +7,17 @@
 </head>
     
 <body>
-      
-<ul ng-repeat="result in jsonData.data.results">
+    
+ <div class="search-results-wrapper">    
+<ul ng-repeat="result in jsonData.data.results | orderBy: 'trialNumber'">
         <li>Trial Number: {{result.trialNumber}}</li>
+        <li>Filing Date: {{result.filingDate | date: MM/dd/yyyy }}</li>
         <li>Patent Owner: {{result.patentOwnerName}}</li>
         <li>Petitioner: {{result.petitionerPartyName}}</li>
         <li>Status: {{result.prosecutionStatus}}</li>
         <li><a ng-click="getDocuments(result.links[1])" href="{{result.links[1].href}}">Get documents</a></li>
         </ul>
-    
+    </div>
 
 </body>
 </html>
