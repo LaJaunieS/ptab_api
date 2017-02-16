@@ -9,6 +9,9 @@
     
 <body>
     <div class="search-results-wrapper">
+       <case-header></case-header>
+        
+        
         <ul ng-repeat="result in jsonData.data.results | orderBy: 'documentNumber'">
         <li>Document Number: {{result.documentNumber}}</li>
         <li>Filing Date: {{result.filingDatetime | date: MM/dd/yyyy }}</li>
@@ -17,6 +20,7 @@
         <li>Document Type: {{result.type}}</li>
         <li><a ng-click="getDocuments(result.links[1])" href="{{result.links[1].href}}">Get document</a></li>
         </ul>
+
     </div>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title></title>
+  <link href='css/main.css' rel='stylesheet' type="text/css">
+  
+</head>
+    
+<body>
+    
+ <div class="case-header-wrapper">    
+     
+      <ul id="case-header-info">
+            <li>Trial Number: {{caseTitleData.data.trialNumber}}</li>
+            <li>Filing Date: {{caseTitleData.data.filingDate | date: MM/dd/yyyy }}</li>
+            <li>Patent Owner: {{caseTitleData.data.patentOwnerName}}</li>
+            <li>Petitioner: {{caseTitleData.data.petitionerPartyName}}</li>
+            <li>Status: {{caseTitleData.data.prosecutionStatus}}</li>
+            <li>Patent Number: {{caseTitleData.data.patentNumber}}</li>
+            <li><a href="" target="_blank" ng-click="getPatentData(caseSearchCall, caseSearch, caseTitleData.data.trialNumber + '/documents')">Get documents</a></li>
+        
+        </ul>
+    </div>
+
+</body>
+</html>
