@@ -8,24 +8,53 @@
     <link href="css/normalize.css" rel='stylesheet' type="text/css">
     <link href='css/main.css' rel='stylesheet' type="text/css">
   
+    <style>
+        div h2 {
+            cursor: pointer;
+        }
+        
+        .search-results-wrapper > ul {
+            border: 1px solid black;
+            list-style-type: none;
+            margin: 0;
+            padding: 15px;
+            max-width: 750px;
+        }
+        
+        .search-results-wrapper > ul:nth-child(odd) {
+            background: #f7f7f7;
+        }
+        .search-results-wrapper > ul:nth-child(even) {
+            background: #d9d9d9;
+        }
+        
+        #options-wrapper {
+            max-width: 450px;
+        }
+    </style>
+    
 </head>
     
 <body data-ng-app="ptabApp">
     <div id="container" data-ng-controller="ptabCtrl">
-        <label id="main-label">Enter a patent number</label>
-        <input tabindex="0" type="text" data-ng-model="query.patentNumber" autocomplete="off" placeholder="patent number"/>
         
-        <button tabindex="0" type="button" id="submit" data-ng-click="getPatentData(patentSearchCall, patentSearch, query.patentNumber)">Submit</button>
-            
-        <h5>{{query.queryErrorMessage}}</h5>
-        <ul ng-repeat="result in patentNumberJson.data.results">
-        <li>Trial Number: {{result.trialNumber}}</li>
-        <li>Patent Owner: {{result.patentOwnerName}}</li>
-        <li>Petitioner: {{result.petitionerPartyName}}</li>
-        <li>Status: {{result.prosecutionStatus}}</li>
-        <li><a ng-click="getDocuments(result.links[1])" href="{{result.links[1].href}}">Get documents</a></li>
+        <div id="options-wrapper">
+        <div ng-click="loadSearch('patent-search', 'case-search')"><h2>Search by patent number</h2></div>
+        <div ng-click="loadSearch('case-search','patent-search')"><h2>Search by case number</h2></div>
+        </div>
         
-        </ul>
+      
+        <patent-search id="patent-search"></patent-search>
+        <case-search id="case-search"></case-search>
+        
+        
+        
+        
+        <patent-search-results id="patent-search-results"></patent-search-results>
+        
+        <case-search-results id="case-search-results"></case-search-results>
+        
+        <error-message id="error-message"></error-message>
         
         
     </div>
