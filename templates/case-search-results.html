@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title></title>
+ 
+  <link href='css/main.css' rel='stylesheet' type="text/css">
+  
+</head>
+    
+<body>
+    
+        <ul ng-repeat="result in jsonData.data.results">
+        <li>Document Number: {{result.documentNumber}}</li>
+        <li>Filing Party: {{result.filingParty}}</li>
+        <li>Document Title: {{result.title}}</li>
+        <li>Document Type: {{result.type}}</li>
+        <li><a ng-click="getDocuments(result.links[1])" href="{{result.links[1].href}}">Get document</a></li>
+        </ul>
+    
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title></title>
+  <link href='css/main.css' rel='stylesheet' type="text/css">
+  
+</head>
+    
+<body>
+   <label id="patent-search-label">Enter a patent number</label>
+        <input id="patent-search-input" tabindex="0" type="text" data-ng-model="query.patentNumber" autocomplete="off" placeholder="patent number"/>
+        <button tabindex="0" type="button" id="submit" data-ng-click="getPatentData(patentSearchCall, patentSearch, query.patentNumber)">Submit</button>
+
+    
+
+</body>
+</html>
