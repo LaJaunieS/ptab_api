@@ -1,9 +1,23 @@
+document.getElementById("case-search-results").style.display = "none";
+document.getElementById("patent-search-results").style.display = "none";
+document.getElementById("error-message").style.display = "none";
+document.getElementById("patent-search").style.display = "none";
+document.getElementById("case-search").style.display = "none";
+
+
+
+             
 
 
 angular.module("ptabApp",[])
-
+        
 
         .controller('ptabCtrl', ['$scope', '$http', function($scope, $http){
+            
+            console.log('angular app loaded');
+            
+            
+            
             //build query string based on user input
             $scope.query = {
                 patentNumber: "",
@@ -12,8 +26,11 @@ angular.module("ptabApp",[])
                 queryErrorMessage: ""
             };
             
+            $scope.ps = document.getElementById("patent-search");
+            $scope.cs = document.getElementById("case-search");
             $scope.patentNumberJson = {}
             $scope.patentSearch = "trials?patentNumber="; //builds url string for patent search
+            $scope.caseSearch = "trials/" + $scope.query.caseNumber;
             
             function getDocuments(url){
                     evt.preventDefault();
@@ -24,6 +41,7 @@ angular.module("ptabApp",[])
                     //load document list template(TBD)
                 };
             
+                
             
              $scope.patentSearchCall =  {
                     method: 'GET',
@@ -32,6 +50,31 @@ angular.module("ptabApp",[])
                         'Content-Type': 'application/json'
                     }
                 };
+            
+            $scope.caseSearchCall = {
+                   method: 'GET',
+                    url: "https://ptabdata.uspto.gov/ptab-api/" + $scope.caseSearch,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }                    
+                };
+             
+            $scope.addTemplateToDom = function(el) {
+                document.getElementById(el).style.display = "initial";
+            };
+            
+            $scope.removeTemplateFromDom  = function(el) {
+                document.getElementById(el).style.display = "none";
+            };
+            
+             $scope.loadSearch = function(thisEl, otherEl) {
+                $scope.addTemplateToDom(thisEl);
+                $scope.removeTemplateFromDom(otherEl);
+                $scope.removeTemplateFromDom("patent-search-results");
+                $scope.removeTemplateFromDom("error-message");
+                $scope.removeTemplateFromDom("case-search-results");
+            };
+              
             
                         
             
@@ -60,34 +103,42 @@ angular.module("ptabApp",[])
             //for patent search, click event to send another get request for case information
             
             
-            console.log('angular app loaded');
+            
             
             
             
             //functions to make calls to api
             $scope.apiCall = function(call) {
                 //call argument passed in from getPatentData() on click       
-                //console.log(call);
-//                $scope.caseSearchCall = {
-//                   method: 'GET',
-//                    url: "https://ptabdata.uspto.gov/ptab-api/trials/" + $scope.query.caseNumber + "/documents",
-//                    headers: {
-//                        'Content-Type': 'application/json'
-//                    }                    
-//                };
+                
+                
                 //call argument passed in from apiCall() -->getPatentData()
                 $http(call).then(
                     function successCallback(data) {
-                    $scope.patentNumberJson = data;
-                    queryErrorExists =  $scope.patentNumberJson.data.results.length == 0;                      
-                        if (queryErrorExists) {
+                    $scope.jsonData = data;
+                    queryErrorExists =  $scope.jsonData.data.results.length === 0;                      
+                    if (queryErrorExists) {
+                        
+                        $scope.removeTemplateFromDom("case-search-results");
+                        $scope.removeTemplateFromDom("patent-search-results");
+                        $scope.addTemplateToDom("error-message");
                         $scope.query.queryErrorMessage = "That patent number doesn't exist, is not in the PTAB database or there was an error retrieving your query. Please enter another number or try your request again";
                         console.log($scope.query.queryErrorMessage);
                         //add error template to DOM
-                    } else {
-                        console.log($scope.patentNumberJson);
+                    } else if (call == $scope.patentSearchCall){
+                        console.log("Patent Search initiated");
+                        $scope.removeTemplateFromDom("case-search-results");
+                        $scope.removeTemplateFromDom("error-message");
+                        $scope.addTemplateToDom("patent-search-results");
+                        console.log($scope.jsonData);
                         //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
-                    };
+                    } else if (call == $scope.caseSearchCall) {
+                        console.log("Case Search initiated");
+                        $scope.removeTemplateFromDom("patent-search-results");
+                        $scope.removeTemplateFromDom("error-message");
+                        $scope.addTemplateToDom("case-search-results");
+                        console.log($scope.jsonData);
+                    }
                         
                     },
                     function errorCallback() {
@@ -105,26 +156,41 @@ angular.module("ptabApp",[])
             
             
         }]) //close controller
+         .directive('patentSearchResults', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/patent-search-results.html"
+            };
+        })
+         .directive('caseSearchResults', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/case-search-results.html"
+            };
+        })
+        .directive('errorMessage', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/error-message.html"
+            };
+        })
+        .directive('patentSearch', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/patent-search.html"
+            };
+        })
+        .directive('caseSearch', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/case-search.html"
+            };
+        })
+        
+
                 
                 
-                
-//                $http(caseSearchCall).then(
-//                    function successCallback(data) {
-//                        $scope.caseNumberJson = data;
-//                        queryErrorExists =  $scope.patentNumberJson.data.results.length == 0;                      
-//                        if (queryErrorExists) {
-//                        $scope.query.queryErrorMessage = "That patent number doesn't exist or there was an error retrieving your query. Please enter another number or try your request again";
-//                        console.log($scope.query.queryErrorMessage);
-//                        //add error template to DOM
-//                    } else {
-//                        console.log($scope.patentNumberJson);
-//                        //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
-//                    };
-//                    
-//                    }, function errorCallback() {
-//                    alert('Failed to connect to the API. Please check your connection and try again.');
-//                });
-                        
+
                 
                 
                 
