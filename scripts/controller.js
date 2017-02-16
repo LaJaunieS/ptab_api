@@ -31,6 +31,7 @@ angular.module("ptabApp",[])
             $scope.patentNumberJson = {}
             $scope.patentSearch = "trials?patentNumber="; //builds url string for patent search
             $scope.caseSearch = "trials/" + $scope.query.caseNumber;
+            $scope.caseTitleSearch = "trials/" + $scope.query.caseNumber;
             
             function getDocuments(url){
                     evt.preventDefault();
@@ -53,11 +54,22 @@ angular.module("ptabApp",[])
             
             $scope.caseSearchCall = {
                    method: 'GET',
+                    url: "https://ptabdata.uspto.gov/ptab-api/" + $scope.caseSearch + "/documents",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }                    
+                };
+            
+            $scope.caseTitleSearchCall = {
+                   method: 'GET',
                     url: "https://ptabdata.uspto.gov/ptab-api/" + $scope.caseSearch,
                     headers: {
                         'Content-Type': 'application/json'
                     }                    
                 };
+            
+            
+            
              
             $scope.addTemplateToDom = function(el) {
                 document.getElementById(el).style.display = "initial";
@@ -111,12 +123,12 @@ angular.module("ptabApp",[])
             $scope.apiCall = function(call) {
                 //call argument passed in from getPatentData() on click       
                 
-                
                 //call argument passed in from apiCall() -->getPatentData()
                 $http(call).then(
                     function successCallback(data) {
                     $scope.jsonData = data;
-                    queryErrorExists =  $scope.jsonData.data.results.length === 0;                      
+                    
+                    queryErrorExists =  $scope.jsonData.data === undefined; 
                     if (queryErrorExists) {
                         
                         $scope.removeTemplateFromDom("case-search-results");
@@ -138,11 +150,15 @@ angular.module("ptabApp",[])
                         $scope.removeTemplateFromDom("error-message");
                         $scope.addTemplateToDom("case-search-results");
                         console.log($scope.jsonData);
+                    } else if (call == $scope.caseTitleSearchCall) {
+                        $scope.caseTitleData = $scope.jsonData; 
+                        $scope.removeTemplateFromDom("patent-search-results");
+                        $scope.removeTemplateFromDom("error-message");
+                        $scope.addTemplateToDom("case-search-results");
                     }
-                        
                     },
                     function errorCallback() {
-                            alert('Failed to connect to the API. Please check your connection and try again.');
+                            alert("The information entered was not a proper case number, or the app failed to connect to the API. Please ensure you entered data in the correct format. Or, please check your connection and try again.");
                             });
                 };
             
@@ -154,6 +170,7 @@ angular.module("ptabApp",[])
                 $scope.apiCall(call);   
                 };
             
+                  
             
         }]) //close controller
          .directive('patentSearchResults', function() {
@@ -184,6 +201,12 @@ angular.module("ptabApp",[])
         return {
             restrict: 'E',
             templateUrl: "templates/case-search.html"
+            };
+        })
+        .directive('caseHeader', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/case-header.html"
             };
         })
         
