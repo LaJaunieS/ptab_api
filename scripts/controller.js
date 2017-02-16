@@ -128,22 +128,23 @@ angular.module("ptabApp",[])
                     function successCallback(data) {
                     $scope.jsonData = data;
                     
-                    queryErrorExists =  $scope.jsonData.data === undefined; 
-                    if (queryErrorExists) {
-                        
-                        $scope.removeTemplateFromDom("case-search-results");
-                        $scope.removeTemplateFromDom("patent-search-results");
-                        $scope.addTemplateToDom("error-message");
-                        $scope.query.queryErrorMessage = "That patent number doesn't exist, is not in the PTAB database or there was an error retrieving your query. Please enter another number or try your request again";
-                        console.log($scope.query.queryErrorMessage);
-                        //add error template to DOM
-                    } else if (call == $scope.patentSearchCall){
-                        console.log("Patent Search initiated");
-                        $scope.removeTemplateFromDom("case-search-results");
-                        $scope.removeTemplateFromDom("error-message");
-                        $scope.addTemplateToDom("patent-search-results");
-                        console.log($scope.jsonData);
-                        //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
+                    if (call == $scope.patentSearchCall){
+                        queryErrorExists =  $scope.jsonData.data.results.length === 0; 
+                        if (queryErrorExists) {
+                            $scope.removeTemplateFromDom("case-search-results");
+                            $scope.removeTemplateFromDom("patent-search-results");
+                            $scope.addTemplateToDom("error-message");
+                            $scope.query.queryErrorMessage = "That patent number doesn't exist, is not in the PTAB database, or there was an error retrieving your query. Please enter another number or try your request again";
+                            console.log($scope.query.queryErrorMessage);
+                            //add error template to DOM
+                            } else {
+                            console.log("Patent Search initiated");
+                            $scope.removeTemplateFromDom("case-search-results");
+                            $scope.removeTemplateFromDom("error-message");
+                            $scope.addTemplateToDom("patent-search-results");
+                            console.log($scope.jsonData);
+                            //$scope.addTemplatesToDom('current-conditions', 'ConditionsTemplateUrl');
+                            };
                     } else if (call == $scope.caseSearchCall) {
                         console.log("Case Search initiated");
                         $scope.removeTemplateFromDom("patent-search-results");
@@ -156,11 +157,11 @@ angular.module("ptabApp",[])
                         $scope.removeTemplateFromDom("error-message");
                         $scope.addTemplateToDom("case-search-results");
                     }
-                    },
-                    function errorCallback() {
-                            alert("The information entered was not a proper case number, or the app failed to connect to the API. Please ensure you entered data in the correct format. Or, please check your connection and try again.");
-                            });
-                };
+                },
+                function errorCallback() {
+                        alert("The information entered was not a proper case number, or the app failed to connect to the API. Please ensure you entered data in the correct format. Or, please check your connection and try again.");
+                        });
+                    };
             
              
         //aggregate functions necessary to build url string, make api call, and load templates
