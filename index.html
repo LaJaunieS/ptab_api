@@ -9,6 +9,12 @@
     <link href='css/main.css' rel='stylesheet' type="text/css">
   
     <style>
+        #search-container {
+            position: relative;
+            }
+        
+            
+        
         div h2 {
             cursor: pointer;
         }
@@ -53,18 +59,18 @@
         <div ng-click="loadSearch('case-search','patent-search')"><h2>Search by case number</h2></div>
         </div>
         
-      
+        <div id="search-container">
         <patent-search id="patent-search"></patent-search>
         <case-search id="case-search"></case-search>
+        <error-message id="error-message"></error-message>
         
-        
+        </div>
         
         
         <patent-search-results id="patent-search-results"></patent-search-results>
         
         <case-search-results id="case-search-results"></case-search-results>
         
-        <error-message id="error-message"></error-message>
         
         
     </div>
