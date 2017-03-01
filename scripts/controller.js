@@ -31,6 +31,7 @@ angular.module("ptabApp",[])
             $scope.patentSearch = "trials?patentNumber="; //builds url string for patent search
             $scope.caseSearch = "trials/" + $scope.query.caseNumber;
             $scope.caseTitleSearch = "trials/" + $scope.query.caseNumber;
+            $scope.docFilterParameters= "/documents?limit=100&sort=documentNumber";
             
             //get request to download a single document
             function getDocuments(url){
