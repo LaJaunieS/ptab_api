@@ -78,7 +78,7 @@ angular.module("ptabApp",[])
             
              $scope.loadSearch = function(thisEl, otherEl, thisTab, otherTab) {
                 $scope.addTemplateToDom(thisEl);
-                document.getElementById(thisTab).className= "current";
+                document.getElementById(thisTab).className= "tab-active";
                 document.getElementById(otherTab).className = "";
                 $scope.removeTemplateFromDom(otherEl);
                 $scope.removeTemplateFromDom("patent-search-results");

@@ -15,7 +15,13 @@
             }
         
         .tab-active {
-            background: red;
+            background: #14679e;
+            color: #fefefe;
+        }
+
+        #options-wrapper ul {
+            list-style-type: none;
+            text-align: center;
         }
             
         
@@ -57,10 +63,10 @@
 <body data-ng-app="ptabApp">
     <div id="container" data-ng-controller="ptabCtrl">
         
-       <div id="options-wrapper" class="row column small-up-11 small" > 
-            <ul class="pagination text-center">
-                <li id="case-search-option" class="current tabs-title" ng-click="loadSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h2>Search case numbers</h2></li>
-                <li id="patent-search-option" class="tabs-title" ng-click="loadSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h2>Search patent numbers</h2></li>
+       <div id="options-wrapper" class="" > 
+            <ul class="row column small-up-11 small">
+                <li id="case-search-option" class="tab-active" ng-click="loadSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h2>Search case numbers</h2></li>
+                <li id="patent-search-option" class="" ng-click="loadSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h2>Search patent numbers</h2></li>
             </ul>
         </div>
         
