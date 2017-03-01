@@ -12,7 +12,7 @@
        <case-header></case-header>
         
         
-        <ul ng-repeat="result in jsonData.data.results | orderBy: 'documentNumber'">
+        <ul ng-repeat="result in jsonData.data.results | orderBy: 'filingDateTime'">
         <li>Document Number: {{result.documentNumber}}</li>
         <li>Filing Date: {{result.filingDatetime | date: MM/dd/yyyy }}</li>
         <li>Filing Party: {{result.filingParty}}</li>
