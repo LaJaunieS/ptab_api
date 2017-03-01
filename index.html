@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     
     <!--<link href="css/normalize.css" rel='stylesheet' type="text/css">-->
-    <link href="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" type="text/css">
     <!--<link href='css/main.css' rel='stylesheet' type="text/css">-->
   
     <style>
@@ -14,6 +14,9 @@
             position: relative;
             }
         
+        .tab-active {
+            background: red;
+        }
             
         
         div h2 {
@@ -23,8 +26,7 @@
         #case-search-results,
         #patent-search-results,
         #error-message,
-        #patent-search,
-        #case-search {
+        #patent-search  {
             display: none;
 /*            display changed in angular as templates called    */
         }
@@ -45,7 +47,7 @@
             background: #d9d9d9;
         }
         
-        #options-wrapper {
+        #search-container {
             max-width: 450px;
         }
     </style>
@@ -55,9 +57,11 @@
 <body data-ng-app="ptabApp">
     <div id="container" data-ng-controller="ptabCtrl">
         
-        <div id="options-wrapper">
-        <div ng-click="loadSearch('patent-search', 'case-search')"><h2>Search by patent number</h2></div>
-        <div ng-click="loadSearch('case-search','patent-search')"><h2>Search by case number</h2></div>
+       <div id="options-wrapper" class="row column small-up-11 small" > 
+            <ul class="pagination text-center">
+                <li id="case-search-option" class="current tabs-title" ng-click="loadSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h2>Search case numbers</h2></li>
+                <li id="patent-search-option" class="tabs-title" ng-click="loadSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h2>Search patent numbers</h2></li>
+            </ul>
         </div>
         
         <div id="search-container">

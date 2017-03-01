@@ -76,8 +76,10 @@ angular.module("ptabApp",[])
                 document.getElementById(el).style.display = "none";
             };
             
-             $scope.loadSearch = function(thisEl, otherEl) {
+             $scope.loadSearch = function(thisEl, otherEl, thisTab, otherTab) {
                 $scope.addTemplateToDom(thisEl);
+                document.getElementById(thisTab).className= "current";
+                document.getElementById(otherTab).className = "";
                 $scope.removeTemplateFromDom(otherEl);
                 $scope.removeTemplateFromDom("patent-search-results");
                 $scope.removeTemplateFromDom("error-message");
