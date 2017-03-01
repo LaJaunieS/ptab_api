@@ -137,8 +137,14 @@ angular.module("ptabApp",[])
         //aggregate function to build url string, make api call, and load templates
             $scope.getPatentData = function(call, search_type, search_param) {
                 call["url"] ="https://ptabdata.uspto.gov/ptab-api/" + search_type + search_param;
-                console.log(call.url);
-                $scope.apiCall(call);   
+                if (call.url === "https://ptabdata.uspto.gov/ptab-api/trials/" || call.url === "https://ptabdata.uspto.gov/ptab-api/trials?patentNumber=") {
+                    $scope.addTemplateToDom("error-message");
+                    $scope.query.queryErrorMessage = "Field cannot be blank";
+                    return Error
+                } else {
+                    console.log(call.url);
+                    $scope.apiCall(call);   
+                    };
                 };
             
                   
