@@ -2,6 +2,7 @@
 
 #container {
     padding: 20px 10px 0;
+    min-height: 100vh;
 }
 
 
@@ -83,4 +84,9 @@ img[alt="pdf-icon"]{
     top: 130px;
     transition: opacity .2s ease-in-out;
     width: 100%;
-    }       
+    }    
+
+#about {
+    position: absolute;
+    top: 95vh;
+}
