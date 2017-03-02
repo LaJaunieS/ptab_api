@@ -64,10 +64,16 @@
     background: #d9d9d9;
 }
 
+#uiArrow,
+img[alt="pdf-icon"]{
+    margin-left: 2%;
+    }
+
 #uiArrow {
     display: none;
-    margin-left: 2%;
 }
+
+
 
 #fetching-message {
     padding-top: 5px;
