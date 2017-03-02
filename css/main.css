@@ -76,7 +76,6 @@
     text-align: center;
     top: 130px;
     transition: opacity .2s ease-in-out;
-    background-color: rgba(23, 121, 186, 0.1);
     width: 100%;
     z-index: -1;    
 }       
