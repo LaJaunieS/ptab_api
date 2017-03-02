@@ -83,7 +83,7 @@ angular.module("ptabApp",[])
                 
                 
             
-             $scope.loadSearch = function(thisEl, otherEl, thisTab, otherTab) {
+             $scope.toggleSearch = function(thisEl, otherEl, thisTab, otherTab) {
                 $scope.addTemplateToDom(thisEl);
                 document.getElementById(thisTab).className = "tab-active";
                 document.getElementById(otherTab).className = "";
@@ -96,32 +96,35 @@ angular.module("ptabApp",[])
             //functions to make calls to api
             $scope.apiCall = function(call) {
             //call argument passed in from getPatentData() -->apiCall() --> $http()
+                //$scope.addTemplateToDom("fetching-message");
+                document.getElementById("fetching-message").style.opacity = "1.0";
                 $http(call).then(
                     function successCallback(data) {
                     $scope.jsonData = data;
-                    
+                    //$scope.removeTemplateFromDom("fetching-message");
+                    document.getElementById("fetching-message").style.opacity = "0.0";
                     if (call === $scope.patentSearchCall){
                         queryErrorExists =  $scope.jsonData.data.results.length === 0; 
                         if (queryErrorExists) {
-                            console.log(data);
+                            //console.log(data);
                             $scope.removeTemplateFromDom("case-search-results");
                             $scope.removeTemplateFromDom("patent-search-results");
                             $scope.removeTemplateFromDom("uiArrow");
                             $scope.addTemplateToDom("error-message");
                             $scope.query.queryErrorMessage = "That patent number doesn't exist, is not in the PTAB database, or there was an error retrieving your query. Please enter another number or try your request again";
-                            console.log($scope.query.queryErrorMessage);
+                            //console.log($scope.query.queryErrorMessage);
                             //add error template to DOM
                             } else {
-                            console.log("Patent Search initiated");
-                            console.log($scope.jsonData);
+                            //console.log("Patent Search initiated");
+                            //console.log($scope.jsonData);
                             $scope.removeTemplateFromDom("uiArrow");
                             $scope.removeTemplateFromDom("case-search-results");
                             $scope.removeTemplateFromDom("error-message");
                             $scope.addTemplateToDom("patent-search-results");
                             };
                     } else if (call === $scope.caseSearchCall) {
-                        console.log("Case Search initiated");
-                        console.log($scope.jsonData);
+                        //console.log("Case Search initiated");
+                        //console.log($scope.jsonData);
                         $scope.addTemplateToDom("uiArrow");
                         $scope.removeTemplateFromDom("patent-search-results");
                         $scope.removeTemplateFromDom("error-message");
@@ -137,8 +140,12 @@ angular.module("ptabApp",[])
                 function errorCallback(data) {
                         //if 400 bad request
                         //if 
+                        document.getElementById("fetching-message").style.opacity = "0.0";
                         if(data.data.status === 400) {
                             $scope.addTemplateToDom("error-message");
+                            $scope.removeTemplateFromDom("uiArrow");
+                            $scope.removeTemplateFromDom("case-search-results");
+                            $scope.addTemplateToDom("patent-search-results");
                             $scope.query.queryErrorMessage = data.data.message;
                             } else {
                                 $scope.addTemplateToDom("error-message");
@@ -156,7 +163,7 @@ angular.module("ptabApp",[])
                     $scope.query.queryErrorMessage = "Field cannot be blank";
                     return Error
                 } else {
-                    console.log(call.url);
+                    //console.log(call.url);
                     $scope.apiCall(call);   
                     };
                 };

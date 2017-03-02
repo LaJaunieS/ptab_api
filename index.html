@@ -17,8 +17,8 @@
         
        <div id="options-wrapper" class="" > 
             <ul class="option-tabs">
-                <li id="case-search-option" class="tab-active" ng-click="loadSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h3>Search trial numbers</h3></li>
-                <li id="patent-search-option" ng-click="loadSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h3>Search patent numbers</h3></li>
+                <li id="case-search-option" class="tab-active" ng-click="toggleSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h3>Search trial numbers</h3></li>
+                <li id="patent-search-option" ng-click="toggleSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h3>Search patent numbers</h3></li>
             </ul>
         </div>
         
@@ -26,7 +26,7 @@
         <patent-search id="patent-search"></patent-search>
         <case-search id="case-search"></case-search>
         <error-message id="error-message"></error-message>
-        
+        <div id="fetching-message"><p>fetching data...</p></div>
         </div>
         
         

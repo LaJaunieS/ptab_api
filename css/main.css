@@ -37,7 +37,7 @@
 #case-search-results,
 #patent-search-results,
 #error-message,
-#patent-search  {
+#patent-search {
     display: none;
     
 /*  display changed in angular as templates called; opacity property for ui effect    */
@@ -69,4 +69,14 @@
     margin-left: 2%;
 }
 
-       
+#fetching-message {
+    padding-top: 5px;
+    position: absolute;
+    opacity: 1.0;
+    text-align: center;
+    top: 130px;
+    transition: opacity .2s ease-in-out;
+    background-color: rgba(23, 121, 186, 0.1);
+    width: 100%;
+    z-index: -1;    
+}       
