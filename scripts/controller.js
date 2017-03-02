@@ -146,7 +146,7 @@ angular.module("ptabApp",[])
                             $scope.removeTemplateFromDom("uiArrow");
                             $scope.removeTemplateFromDom("case-search-results");
                             $scope.addTemplateToDom("patent-search-results");
-                            $scope.query.queryErrorMessage = data.data.message;
+                            $scope.query.queryErrorMessage = data.data.message + " Please try your request with another number";
                         } else {
                                 $scope.addTemplateToDom("error-message");
                                 $scope.query.queryErrorMessage = "There was a problem connecting to the API. Please check your connection and try again.";
