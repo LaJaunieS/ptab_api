@@ -7,67 +7,8 @@
     
     <!--<link href="css/normalize.css" rel='stylesheet' type="text/css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" type="text/css">
-    <!--<link href='css/main.css' rel='stylesheet' type="text/css">-->
-  
-    <style>
-        #search-container {
-            position: relative;
-            margin: auto;
-            }
-
-
-        
-        .tab-active {
-            background: #14679e;
-            color: #fefefe;
-        }
-
-        #options-wrapper .option-tabs {
-            list-style-type: none;
-            text-align: center; 
-        }
-            
-        
-        #options-wrapper .option-tabs li {
-            border: 1px solid #cacaca;
-            border-radius: 5px;
-            cursor: pointer;
-            display: inline-block;
-            margin: auto 5px;
-            padding: 5px 10px;
-        }
-        
-        #case-search-results,
-        #patent-search-results,
-        #error-message,
-        #patent-search  {
-            display: none;
-/*            display changed in angular as templates called    */
-        }
-        
-        .case-header-wrapper > ul,
-        .search-results-wrapper > ul {
-            border: 1px solid #cacaca;
-            list-style-type: none;
-            margin: 0;
-            padding: 15px;
-            max-width: 750px;
-        }
-        
-        .search-results-wrapper > ul:nth-child(odd) {
-            background: #f7f7f7;
-        }
-        .search-results-wrapper > ul:nth-child(even) {
-            background: #d9d9d9;
-        }
-        
-        #search-container {
-            max-width: 450px;
-            text-align: center;
-        }
-
-        
-    </style>
+    <link href='css/main.css' rel='stylesheet' type="text/css">
+ 
     
 </head>
     
@@ -76,7 +17,7 @@
         
        <div id="options-wrapper" class="" > 
             <ul class="option-tabs">
-                <li id="case-search-option" class="tab-active" ng-click="loadSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h3>Search case numbers</h3></li>
+                <li id="case-search-option" class="tab-active" ng-click="loadSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h3>Search trial numbers</h3></li>
                 <li id="patent-search-option" ng-click="loadSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h3>Search patent numbers</h3></li>
             </ul>
         </div>
@@ -99,7 +40,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js" type="text/javascript"></script>
     <script src="scripts/controller.js" type="text/javascript"></script>
-        
+      
 </body>
     
 </html>

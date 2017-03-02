@@ -9,10 +9,13 @@
              //doc search in a case= https://ptabdata.uspto.gov/ptab-api/trials/ipr2014-00786/documents?title=petition
 
 
+
+
+
 angular.module("ptabApp",[])
         
 
-        .controller('ptabCtrl', ['$scope', '$http', function($scope, $http){
+        .controller('ptabCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
             
             console.log('angular app loaded');
                         
@@ -76,6 +79,10 @@ angular.module("ptabApp",[])
                 document.getElementById(el).style.display = "none";
             };
             
+            
+                
+                
+            
              $scope.loadSearch = function(thisEl, otherEl, thisTab, otherTab) {
                 $scope.addTemplateToDom(thisEl);
                 document.getElementById(thisTab).className = "tab-active";
@@ -99,6 +106,7 @@ angular.module("ptabApp",[])
                             console.log(data);
                             $scope.removeTemplateFromDom("case-search-results");
                             $scope.removeTemplateFromDom("patent-search-results");
+                            $scope.removeTemplateFromDom("uiArrow");
                             $scope.addTemplateToDom("error-message");
                             $scope.query.queryErrorMessage = "That patent number doesn't exist, is not in the PTAB database, or there was an error retrieving your query. Please enter another number or try your request again";
                             console.log($scope.query.queryErrorMessage);
@@ -106,6 +114,7 @@ angular.module("ptabApp",[])
                             } else {
                             console.log("Patent Search initiated");
                             console.log($scope.jsonData);
+                            $scope.removeTemplateFromDom("uiArrow");
                             $scope.removeTemplateFromDom("case-search-results");
                             $scope.removeTemplateFromDom("error-message");
                             $scope.addTemplateToDom("patent-search-results");
@@ -113,11 +122,13 @@ angular.module("ptabApp",[])
                     } else if (call === $scope.caseSearchCall) {
                         console.log("Case Search initiated");
                         console.log($scope.jsonData);
+                        $scope.addTemplateToDom("uiArrow");
                         $scope.removeTemplateFromDom("patent-search-results");
                         $scope.removeTemplateFromDom("error-message");
                         $scope.addTemplateToDom("case-search-results");
                     } else if (call === $scope.caseTitleSearchCall) {
                         $scope.caseTitleData = $scope.jsonData; 
+                        $scope.removeTemplateFromDom("uiArrow");
                         $scope.removeTemplateFromDom("patent-search-results");
                         $scope.removeTemplateFromDom("error-message");
                         $scope.addTemplateToDom("case-search-results");

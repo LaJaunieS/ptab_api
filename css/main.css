@@ -1,0 +1,72 @@
+
+
+#container {
+    padding: 20px 10px 0;
+}
+
+
+#search-container {
+    position: relative;
+    margin: auto;
+    max-width: 450px;
+    text-align: center;
+    }
+
+.tab-active {
+    background: #14679e;
+    color: #fefefe;
+    }
+
+#options-wrapper .option-tabs {
+    list-style-type: none;
+    text-align: center; 
+    }
+            
+        
+#options-wrapper .option-tabs li {
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    margin: auto 1px;
+    max-width: 450px;
+    padding: 5px 10px;
+    width: 80%;
+}
+
+#case-search-results,
+#patent-search-results,
+#error-message,
+#patent-search  {
+    display: none;
+    
+/*  display changed in angular as templates called; opacity property for ui effect    */
+}
+
+.case-header-wrapper > ul,
+.search-results-wrapper > ul {
+    border: 1px solid #cacaca;
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    max-width: 750px;
+}
+
+.search-results-wrapper ul {
+    margin: auto;
+    padding-left: 3%;
+}
+
+.search-results-wrapper > ul:nth-child(odd) {
+    background: #f7f7f7;
+}
+.search-results-wrapper > ul:nth-child(even) {
+    background: #d9d9d9;
+}
+
+#uiArrow {
+    display: none;
+    margin-left: 2%;
+}
+
+       
