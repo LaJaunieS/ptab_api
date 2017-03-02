@@ -72,7 +72,7 @@
 #fetching-message {
     padding-top: 5px;
     position: absolute;
-    opacity: 1.0;
+    opacity: 0;
     text-align: center;
     top: 130px;
     transition: opacity .2s ease-in-out;
