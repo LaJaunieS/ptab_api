@@ -141,13 +141,13 @@ angular.module("ptabApp",[])
                         //if 400 bad request
                         //if 
                         document.getElementById("fetching-message").style.opacity = "0.0";
-                        if(data.data.status === 400) {
+                        if(data.data.status === 400 || data.data.status === 404) {
                             $scope.addTemplateToDom("error-message");
                             $scope.removeTemplateFromDom("uiArrow");
                             $scope.removeTemplateFromDom("case-search-results");
                             $scope.addTemplateToDom("patent-search-results");
                             $scope.query.queryErrorMessage = data.data.message;
-                            } else {
+                        } else {
                                 $scope.addTemplateToDom("error-message");
                                 $scope.query.queryErrorMessage = "There was a problem connecting to the API. Please check your connection and try again.";
                             };
