@@ -17,8 +17,8 @@
         
        <div id="options-wrapper" class="" > 
             <ul class="option-tabs">
-                <li id="case-search-option" class="tab-active" ng-click="toggleSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h3>Search trial numbers</h3></li>
-                <li id="patent-search-option" ng-click="toggleSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h3>Search patent numbers</h3></li>
+                <li id="case-search-option" class="tab-active" data-ng-click="toggleSearch('case-search','patent-search', 'case-search-option', 'patent-search-option')"><h3>Search trial numbers</h3></li>
+                <li id="patent-search-option" data-ng-click="toggleSearch('patent-search', 'case-search', 'patent-search-option', 'case-search-option')"><h3>Search patent numbers</h3></li>
             </ul>
         </div>
         
@@ -35,7 +35,7 @@
         <case-search-results id="case-search-results"></case-search-results>
         
         
-        <div id="about"><p>built with angular1.5.7. <a href="https://github.com/LaJaunieS/ptab_api">github</a></p></div>
+        <div id="about"><p>built with angular 1.5.7. <a href="https://github.com/LaJaunieS/ptab_api">github</a></p></div>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js" type="text/javascript"></script>

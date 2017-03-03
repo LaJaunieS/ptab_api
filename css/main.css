@@ -86,7 +86,17 @@ img[alt="pdf-icon"]{
     width: 100%;
     }    
 
+
 #about {
-    position: absolute;
-    top: 95vh;
+    font-size: .7em;
+    padding-top: 150px;
+}
+
+@media screen and (min-width: 1200px) {
+    #about {
+        position: fixed;
+        padding-top: 0;
+        top: 95vh;
+    }
+    
 }
