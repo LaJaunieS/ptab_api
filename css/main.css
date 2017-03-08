@@ -1,4 +1,4 @@
-
+	
 
 #container {
     padding: 20px 10px 0;
@@ -92,6 +92,19 @@ img[alt="pdf-icon"]{
     padding-top: 150px;
 }
 
+
+@media screen and (min-width: 40em) {
+		#options-wrapper .option-tabs li {
+			margin: auto -15px;
+		}
+
+		#options-wrapper .option-tabs li:last-child {
+			border-left: none;
+		}
+
+}
+
+ 
 @media screen and (min-width: 1200px) {
     #about {
         position: fixed;
