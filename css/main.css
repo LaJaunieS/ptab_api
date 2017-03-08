@@ -1,4 +1,6 @@
-	
+ol, ul {
+	margin-left: 0;
+}	
 
 #container {
     padding: 20px 10px 0;
