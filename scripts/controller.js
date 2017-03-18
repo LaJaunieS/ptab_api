@@ -97,7 +97,7 @@ angular.module("ptabApp",[])
             $scope.apiCall = function(call) {
             //call argument passed in from getPatentData() -->apiCall() --> $http()
                 //$scope.addTemplateToDom("fetching-message");
-                document.getElementById("fetching-message").style.opacity = "1.0";
+                document.getElementById("fetching-message").style.opacity = "0.4";
                 $http(call).then(
                     function successCallback(data) {
                     $scope.jsonData = data;
@@ -207,6 +207,12 @@ angular.module("ptabApp",[])
             templateUrl: "templates/case-header.html"
             };
         })
+        .directive('fetchingMessage', function() {
+        return {
+            restrict: 'E',
+            templateUrl: "templates/fetching-message.html"
+            };
+        });
         
 
                 

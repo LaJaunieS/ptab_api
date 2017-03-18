@@ -1,3 +1,7 @@
+@keyframes spinner { 
+0% { transform: rotate(-360deg); transform-origin: center; }
+}
+
 ol, ul {
 	margin-left: 0;
 }	
@@ -77,16 +81,29 @@ img[alt="pdf-icon"]{
 }
 
 
-
 #fetching-message {
-    padding-top: 5px;
-    position: absolute;
+    position: relative;
     opacity: 0;
+    height: 60px;
     text-align: center;
-    top: 130px;
+}
+
+#fetching-img {
+    position: relative;
+}
+
+#fetching-img #outer-circle{
     transition: opacity .2s ease-in-out;
-    width: 100%;
-    }    
+    }   
+
+#fetching-img #outer-circle {
+    animation: spinner .8s infinite;
+    z-index: 10;
+    height: 80px;
+    width: 80px;
+    } 
+
+
 
 
 #about {
