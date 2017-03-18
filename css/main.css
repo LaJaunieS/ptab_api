@@ -82,9 +82,10 @@ img[alt="pdf-icon"]{
 
 
 #fetching-message {
-    position: relative;
-    opacity: 0;
+    display: none;
+    position: absolute;
     height: 60px;
+    opacity: 0.4;
     text-align: center;
     transition: opacity .2s ease-in-out;
 }

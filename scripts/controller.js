@@ -97,12 +97,12 @@ angular.module("ptabApp",[])
             $scope.apiCall = function(call) {
             //call argument passed in from getPatentData() -->apiCall() --> $http()
                 //$scope.addTemplateToDom("fetching-message");
-                document.getElementById("fetching-message").style.opacity = "0.4";
+                $scope.addTemplateToDom("fetching-message");
                 $http(call).then(
                     function successCallback(data) {
                     $scope.jsonData = data;
                     //$scope.removeTemplateFromDom("fetching-message");
-                    document.getElementById("fetching-message").style.opacity = "0.0";
+                    $scope.removeTemplateFromDom("fetching-message");
                     if (call === $scope.patentSearchCall){
                         queryErrorExists =  $scope.jsonData.data.results.length === 0; 
                         if (queryErrorExists) {
@@ -140,7 +140,7 @@ angular.module("ptabApp",[])
                 function errorCallback(data) {
                         //if 400 bad request
                         //if 
-                        document.getElementById("fetching-message").style.opacity = "0.0";
+                        $scope.removeTemplateFromDom("fetching-message");
                         if(data.data.status === 400 || data.data.status === 404) {
                             $scope.addTemplateToDom("error-message");
                             $scope.removeTemplateFromDom("uiArrow");
