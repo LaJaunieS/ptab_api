@@ -86,15 +86,13 @@ img[alt="pdf-icon"]{
     opacity: 0;
     height: 60px;
     text-align: center;
+    transition: opacity .2s ease-in-out;
 }
 
 #fetching-img {
     position: relative;
 }
-
-#fetching-img #outer-circle{
-    transition: opacity .2s ease-in-out;
-    }   
+   
 
 #fetching-img #outer-circle {
     animation: spinner .8s infinite;
