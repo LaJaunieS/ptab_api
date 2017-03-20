@@ -88,18 +88,18 @@ img[alt="pdf-icon"]{
 
 #fetching-message {
     height: 60px;
-    opacity: 0.4;
     width: 100%;
 }
 
 
 #fetching-img #outer-circle {
     animation: spinner .8s infinite;
-    z-index: 10;
+    opacity: 0.4;
     height: 80px;
     width: 80px;
     position: absolute;
     left: 42%;
+    z-index: 10;
     } 
 
 
