@@ -44,7 +44,8 @@ ol, ul {
 #case-search-results,
 #patent-search-results,
 #error-message,
-#patent-search {
+#patent-search,
+#fetching-message {
     display: none;
     
 /*  display changed in angular as templates called; opacity property for ui effect    */
@@ -81,25 +82,24 @@ img[alt="pdf-icon"]{
 }
 
 
-#fetching-message {
-    display: none;
-    position: absolute;
-    height: 60px;
-    opacity: 0.4;
-    text-align: center;
-    transition: opacity .2s ease-in-out;
-}
-
 #fetching-img {
     position: relative;
 }
-   
+
+#fetching-message {
+    height: 60px;
+    opacity: 0.4;
+    width: 100%;
+}
+
 
 #fetching-img #outer-circle {
     animation: spinner .8s infinite;
     z-index: 10;
     height: 80px;
     width: 80px;
+    position: absolute;
+    left: 42%;
     } 
 
 
